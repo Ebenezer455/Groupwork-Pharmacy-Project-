@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Groupwork Pharmacy Store</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f8f6;
+      color: #24332d;
+    }
+
+    header {
+      background: #087f5b;
+      color: white;
+      padding: 22px 7%;
+    }
+
+    header h1 {
+      margin: 0 0 8px;
+    }
+
+    nav {
+      margin-top: 15px;
+    }
+
+    nav a {
+      color: white;
+      margin-right: 18px;
+      text-decoration: none;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 45px 20px;
+      background: #dff5eb;
+    }
+
+    .hero h2 {
+      font-size: 30px;
+    }
+
+    .search {
+      width: 90%;
+      max-width: 500px;
+      padding: 13px;
+      border: 1px solid #aaa;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    main {
+      padding: 25px 7%;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 18px;
+    }
+
+    .product {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px #00000012;
+    }
+
+    .product h3 {
+      color: #087f5b;
+    }
+
+    button {
+      background: #087f5b;
+      color: white;
+      border: none;
+      padding: 11px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    footer {
+      background: #173d32;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Groupwork Pharmacy Store</h1>
+    <p>Your health and well-being matter to us.</p>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#medicines">Medicines</a>
+      <a href="#about">About Us</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <h2>Welcome to Our Online Pharmacy</h2>
+    <p>Browse our sample medicine catalogue.</p>
+    <input
+      class="search"
+      id="search"
+      type="search"
+      placeholder="Search for a medicine..."
+      aria-label="Search medicines"
+    >
+  </section>
+
+  <main>
+    <section id="medicines">
+      <h2>Our Medicine Catalogue</h2>
+      <div class="products" id="products">
+        <article class="product" data-name="paracetamol pain relief">
+          <h3>Paracetamol</h3>
+          <p>Category: Pain relief</p>
+          <p>Sample price: GH₵ 10.00</p>
+          <button type="button" onclick="alert('Demo only. Ordering is not yet available.')">View Details</button>
+        </article>
+
+        <article class="product" data-name="vitamin c vitamins">
+          <h3>Vitamin C</h3>
+          <p>Category: Vitamins</p>
+          <p>Sample price: GH₵ 25.00</p>
+          <button type="button" onclick="alert('Demo only. Ordering is not yet available.')">View Details</button>
+        </article>
+
+        <article class="product" data-name="first aid supplies">
+          <h3>First Aid Supplies</h3>
+          <p>Category: First Aid</p>
+          <p>Sample price: GH₵ 30.00</p>
+          <button type="button" onclick="alert('Demo only. Ordering is not yet available.')">View Details</button>
+        </article>
+      </div>
+      <p id="noResults" hidden>No matching sample products found.</p>
+    </section>
+
+    <section id="about">
+      <h2>About Our Pharmacy</h2>
+      <p>
+        Our project aims to make medicine browsing easier and help pharmacy
+        staff manage stock and customer orders. This is a student prototype.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Groupwork Pharmacy Store. Student project prototype.</p>
+  </footer>
+
+  <script>
+    const search = document.getElementById("search");
+    const products = document.querySelectorAll(".product");
+    const noResults = document.getElementById("noResults");
+
+    search.addEventListener("input", function () {
+      const term = search.value.toLowerCase().trim();
+      let visibleCount = 0;
+
+      products.forEach(function (product) {
+        const matches = product.dataset.name.includes(term);
+        product.hidden = !matches;
+        if (matches) visibleCount++;
+      });
+
+      noResults.hidden = visibleCount !== 0;
+    });
+  </script>
+</body>
+</html>
